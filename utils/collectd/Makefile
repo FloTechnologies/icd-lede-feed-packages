@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=collectd
-PKG_VERSION:=5.5.2
+PKG_VERSION:=5.6.2
 PKG_RELEASE:=4
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=http://collectd.org/files/
-PKG_MD5SUM:=40b83343f72089e0330f53965f1140bd
+PKG_MD5SUM:=3953f46c60f94ea8eebf028f4861dc3b
 
 PKG_FIXUP:=autoreconf
 PKG_REMOVE_FILES:=aclocal.m4 libltdl/aclocal.m4
@@ -120,6 +120,7 @@ COLLECTD_PLUGINS_SELECTED:= \
 	madwifi \
 	memory \
 	modbus \
+	mqtt \
 	mysql \
 	netlink \
 	network \
@@ -334,6 +335,7 @@ $(eval $(call BuildPlugin,madwifi,MadWifi status input,madwifi,))
 #$(eval $(call BuildPlugin,mysql,MySQL status input,mysql,+PACKAGE_collectd-mod-mysql:libmysqlclient-r))
 $(eval $(call BuildPlugin,memory,physical memory usage input,memory,))
 $(eval $(call BuildPlugin,modbus,read variables through libmodbus,modbus,+PACKAGE_collectd-mod-modbus:libmodbus))
+$(eval $(call BuildPlugin,mqtt,MQTT data output,mqtt,+PACKAGE_collectd-mod-mqtt:libmosquitto))
 $(eval $(call BuildPlugin,netlink,netlink input,netlink,+PACKAGE_collectd-mod-netlink:libmnl))
 $(eval $(call BuildPlugin,network,network input/output,network,+PACKAGE_COLLECTD_ENCRYPTED_NETWORK:libgcrypt))
 $(eval $(call BuildPlugin,nginx,nginx status input,nginx,+PACKAGE_collectd-mod-nginx:libcurl))
